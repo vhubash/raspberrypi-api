@@ -20,3 +20,4 @@ api.add_resource(resourses.CO2_all, '/api/co2/all')
 api.add_resource(resourses.Humidity_all, '/api/humidity/all')
 api.add_resource(resourses.Temperature_all, '/api/temperature/all')
 api.add_resource(resourses.All_Telemetry, '/api/all')
+
