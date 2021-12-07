@@ -12,6 +12,11 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 api = Api(app)
 
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+    
 from . import resourses
 
 #connect api resources
