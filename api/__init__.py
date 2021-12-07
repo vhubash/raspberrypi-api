@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 from flask_marshmallow import Marshmallow
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import  Api
 from flask_sqlalchemy import SQLAlchemy
 
 #Create an instance of Flask
