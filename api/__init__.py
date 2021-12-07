@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_marshmallow import Marshmallow
 from flask_restful import  Api
 from flask_sqlalchemy import SQLAlchemy
@@ -17,6 +17,10 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
     
+@app.route("/")
+def index():
+   return render_template('index.html')
+
 from . import resourses
 
 #connect api resources

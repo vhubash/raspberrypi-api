@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Changa:wght@600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <title>Main</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header--navigation">
+                <div class="header--burger">
+                    <span></span>
+                </div>
+                <ul class="nav-items">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#graphs">Graphics</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+            </div>
+        </header>
+        <article id="about-us">
+            <h1>Company Name LTD</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia autem fugit eius ducimus! Quam exercitationem voluptate alias excepturi, sequi tempora odio qui ipsam aperiam illo accusamus debitis, deleniti facilis omnis.
+            Quos unde dolor ducimus sed maiores inventore vitae, culpa enim quae exercitationem quam possimus libero et quisquam, ex minus doloribus. Aliquam quod eum sapiente natus dolor, asperiores libero minima facere?
+            Cupiditate, quo nesciunt fugit autem quasi cum officiis, voluptatibus nostrum illum excepturi ducimus, quae velit debitis reprehenderit quaerat! Tenetur iusto perferendis laboriosam cumque consequuntur non facere! Quis dolorum labore quod.</p>
+        </article>
+        <article id="graphs">
+            <div class="graph--title">
+                <h2>Our Beautiful Graphs</h2>
+            </div>
+            <div id="complex-chart"></div>
+            <div id="line-chart"></div>
+        </article>
+        <footer id="footer">
+            <span>Company Name LTD ©</span>
+        </footer>
+    </div>
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/burger.js') }}"></script>
+</body>
+</html>
