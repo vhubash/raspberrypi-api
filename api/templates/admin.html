@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Telemetry API Server</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}" />
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+  <!--Main Navigation-->
+  <header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+          <a href="#alltelemetry" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Усі датчики</span>
+          </a>
+          <a href="#co2" class="list-group-item list-group-item-action py-2 ripple ">
+            <i class="fas fa-chart-area fa-fw me-3"></i><span>Рівень CO2 </span>
+          </a>
+          <a href="#humidity" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-tint fa-fw me-3"></i><span>Рівень вологості</span></a>
+          <a href="#temperature" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-thermometer-half fa-fw me-3"></i><span>Температура</span></a>
+          <a href="#about" class="list-group-item list-group-item-action py-2 ripple"><span>Про проєкт</span></a>
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+          aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Brand -->
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Raspberry Pi Telemetry API</span>
+        </div>
+        <a href="https://github.com/vhubash/raspberrypi-api" class="nav-link text-white"><i class="fab fa-github"></i></a>
+     
+        
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
+      <!-- Jumbotron -->
+<div
+class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
+style="background-image: url('{{ url_for('static', filename='img/banner.jpeg') }}');"
+>
+<h1 class="mb-3 h2">Telemetry API Server</h1>
+
+<p>
+ Це API-сервер, що дозволяє отримати, зберігати та візуалізувати дані телеметрії з різних датчиків, що підключені до системи. 
+</p>
+</div>
+<!-- Jumbotron -->
+      <!-- Section: Main chart -->
+      <section class="mb-4">
+       
+        <div id="alltelemetry" class="card">
+          <div class="card-header py-3">
+            <h5 class="mb-0 text-center"><strong>Зведені дані з датчиків</strong></h5>
+          </div>
+          <div class="card-body">
+            <div id="complex-chart"></div>
+            
+          </div>
+        </div>
+      </section>
+      <section class="mb-4">
+        <div id="co2" class="card">
+          <div class="card-header py-3">
+            <h5 class="mb-0 text-center"><strong>Рівень CO2</strong></h5>
+          </div>
+          <div class="card-body">
+            <div id="line-chart"></div>
+            
+          </div>
+        </div>
+      </section>
+      <section class="mb-4">
+        <div id="humidity" class="card">
+          <div class="card-header py-3">
+            <h5 class="mb-0 text-center"><strong>Рівень вологості</strong></h5>
+          </div>
+          <div class="card-body">
+            <div id="humidity-chart"></div>
+            
+          </div>
+        </section>
+        <section class="mb-4">
+          <div id="temperature" class="card">
+            <div class="card-header py-3">
+              <h5 class="mb-0 text-center"><strong>Рівень температури</strong></h5>
+            </div>
+            <div class="card-body">
+              <div id="temperature-chart"></div>
+              
+            </div>
+        </div>
+      </section>
+      <!-- Section: Main chart -->
+     
+      <footer id="about"  class="bg-light text-center text-lg-start">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-2 col-sm-4 mb-4 mb-md-0">
+     
+                <a class="navbar-brand" href="#">
+          <img src="{{ url_for('static', filename='img/lpnu_logo.png') }}" style="width:100%" alt="" loading="lazy" />
+        </a>
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-10 col-sm-8 mb-4 mb-md-0">
+              <h5 class="text-uppercase">ПРО ПРОЄКТ</h5>
+      
+              <p>
+                Проєкт зроблено в рамках курсового проєкту з дисципліни "Інноваційні Інноваційні технології". 
+                <h5>Розробка:</h5>
+                <li>Server-side API: Губаш Володимир</li>
+                <li>Front-end частина: Гащенко Олексій</li>
+                <li>Програмно-апаратна частина: Дребот Володимир.</li>
+             </p>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          Telemetry API Server © 2021
+        </div>
+        <!-- Copyright -->
+      </footer>
+    </div>
+  </main>
+
+
+
+    
+    
+  <!--Main layout-->
+  <!-- MDB -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/admin.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+</body>
+
+</html>

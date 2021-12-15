@@ -19,6 +19,10 @@ def after_request(response):
     
 @app.route("/")
 def index():
+   return render_template('admin.html')
+
+@app.route("/old")
+def index():
    return render_template('index.html')
 
 from . import resourses
