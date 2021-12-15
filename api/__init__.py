@@ -22,7 +22,7 @@ def index():
    return render_template('admin.html')
 
 @app.route("/old")
-def index():
+def old_index():
    return render_template('index.html')
 
 from . import resourses
